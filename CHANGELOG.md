@@ -4,6 +4,20 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [0.122.3](https://github.com/promptfoo/promptfoo/compare/0.122.2...0.122.3) (2026-08-31)
+
+
+### Bug Fixes
+
+* **config:** avoid stack traces for missing optional configs ([#10523](https://github.com/promptfoo/promptfoo/issues/10523)) ([3d67680](https://github.com/promptfoo/promptfoo/commit/3d676805ca5cf40f5a4e92d65db21836cb7391a3))
+* **deps:** update dependency @inquirer/core to v12 ([#10554](https://github.com/promptfoo/promptfoo/issues/10554)) ([90fa399](https://github.com/promptfoo/promptfoo/commit/90fa399b941364363f57288fbf305b6d6aaff7ed))
+* **eval:** keep the CLI alive while watch mode is watching ([#10562](https://github.com/promptfoo/promptfoo/issues/10562)) ([89d4138](https://github.com/promptfoo/promptfoo/commit/89d41387f5f1b0d9746d7175c23b8c0c9c8cfa52))
+* **eval:** watch mode ignored scalar and generator `tests` references ([#10169](https://github.com/promptfoo/promptfoo/issues/10169)) ([71499e3](https://github.com/promptfoo/promptfoo/commit/71499e3ed2c1292df16ab9f77cd11dbcf8f791ee))
+* **go-provider:** support importable packages ([#10540](https://github.com/promptfoo/promptfoo/issues/10540)) ([10deb31](https://github.com/promptfoo/promptfoo/commit/10deb31cc3ac953a28ee88fe43530cfc4d2c7927))
+* **providers:** address AI code quality findings ([#10552](https://github.com/promptfoo/promptfoo/issues/10552)) ([9cd1924](https://github.com/promptfoo/promptfoo/commit/9cd19241a0706fcf59dd609167f4218612fc4beb))
+* **providers:** retain failed security scan costs ([#10521](https://github.com/promptfoo/promptfoo/issues/10521)) ([04e36f3](https://github.com/promptfoo/promptfoo/commit/04e36f3b139be643a72d6b08649fe14527b0a4d0))
+* **providers:** stop forwarding portkey provider config as HTTP headers ([#10536](https://github.com/promptfoo/promptfoo/issues/10536)) ([3f94284](https://github.com/promptfoo/promptfoo/commit/3f942845637918a72111e632952b16daf9fb2066))
+
 ## [0.122.2](https://github.com/promptfoo/promptfoo/compare/0.122.1...0.122.2) (2026-08-28)
 
 ### Features
