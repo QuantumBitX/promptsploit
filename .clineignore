@@ -1,0 +1,39 @@
+# PromptSploit .clineignore
+# Single biggest context lever. Everything here is invisible to Cline.
+
+# Web UI — 207,959 LOC. Out of scope permanently (stays TypeScript, D5).
+src/app/
+
+# Docs site — large, not code
+site/
+docs/
+
+# Providers — 99,388 LOC across 109 integrations.
+# Being deleted in favour of LiteLLM (D2). Never port these.
+# Comment out ONLY if a task genuinely needs one provider as reference.
+src/providers/
+
+# Build artefacts and deps
+node_modules/
+dist/
+build/
+.next/
+coverage/
+*.tsbuildinfo
+
+# Lockfiles — huge, zero signal
+package-lock.json
+pnpm-lock.yaml
+
+# Examples — 100s of files, will derail exploration
+examples/
+
+# Secrets
+.env
+.env.*
+*.pem
+*.key
+
+# Notes:
+# - test/ is deliberately NOT ignored. Tests are the specification (Phase 3).
+# - Ignoring src/app and src/providers removes ~307k of 336k LOC from reach.

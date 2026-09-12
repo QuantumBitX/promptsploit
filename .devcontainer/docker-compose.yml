@@ -1,14 +1,17 @@
 services:
-  promptfoo_dev:
+  promptsploit_dev:
     build:
       context: ..
       dockerfile: ./.devcontainer/Dockerfile.dev
     volumes:
       - ..:/workspace:cached
-      - promptfoo_cache:/home/node/.promptfoo/
-      - promptfoo_npm_global:/home/node/.npm-global
+      - promptsploit_cache:/home/node/.promptfoo/
+      - promptsploit_npm_global:/home/node/.npm-global
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
     command: sleep infinity
 
 volumes:
-  promptfoo_cache:
-  promptfoo_npm_global:
+  promptsploit_cache:
+  promptsploit_npm_global:

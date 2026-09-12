@@ -1,7 +1,7 @@
 {
-  "name": "promptfoo_dev",
+  "name": "promptsploit_dev",
   "dockerComposeFile": ["docker-compose.yml"],
-  "service": "promptfoo_dev",
+  "service": "promptsploit_dev",
   "workspaceFolder": "/workspace",
   "remoteUser": "node",
   "customizations": {
@@ -23,5 +23,5 @@
       "extensions": ["esbenp.prettier-vscode", "dbaeumer.vscode-eslint", "GitHub.copilot"]
     }
   },
-  "postCreateCommand": "npm ci --ignore-scripts && npm rebuild better-sqlite3 && npm run build && npm link"
+  "postCreateCommand": "echo skipping build"
 }
