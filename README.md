@@ -1,101 +1,41 @@
-# Promptfoo: LLM evals & red teaming
+# PromptSploit
 
-<p align="center">
-  <a href="https://npmjs.com/package/promptfoo"><img src="https://img.shields.io/npm/v/promptfoo" alt="npm"></a>
-  <a href="https://npmjs.com/package/promptfoo"><img src="https://img.shields.io/npm/dm/promptfoo" alt="npm"></a>
-  <a href="https://github.com/promptfoo/promptfoo/actions/workflows/main.yml"><img src="https://img.shields.io/github/actions/workflow/status/promptfoo/promptfoo/main.yml" alt="GitHub Workflow Status"></a>
-  <a href="https://github.com/promptfoo/promptfoo/blob/main/LICENSE"><img src="https://img.shields.io/github/license/promptfoo/promptfoo" alt="MIT license"></a>
-  <a href="https://discord.gg/promptfoo"><img src="https://img.shields.io/discord/1146610656779440188?logo=discord&label=promptfoo" alt="Discord"></a>
-</p>
+**PromptSploit is a hard fork of [promptfoo](https://github.com/promptfoo/promptfoo), originally created by Promptfoo Inc. and licensed under MIT. This project is not affiliated with, endorsed by, or connected to Promptfoo Inc. or OpenAI.**
 
-<p align="center">
-  <code>promptfoo</code> is a CLI and library for evaluating and red-teaming LLM apps. Stop the trial-and-error approach - start shipping secure, reliable AI apps.
-</p>
+Enormous credit is due to promptfoo's authors and its open-source contributors. This fork exists because of the quality of their work, not in spite of it.
 
-<p align="center">
-  <a href="https://www.promptfoo.dev">Website</a> ·
-  <a href="https://www.promptfoo.dev/docs/getting-started/">Getting Started</a> ·
-  <a href="https://www.promptfoo.dev/docs/red-team/">Red Teaming</a> ·
-  <a href="https://www.promptfoo.dev/docs/">Documentation</a> ·
-  <a href="https://discord.gg/promptfoo">Discord</a>
-</p>
+## Status
 
-> Promptfoo is now part of OpenAI. Promptfoo remains open source and MIT licensed. Read the [company update](https://www.promptfoo.dev/blog/promptfoo-joining-openai/).
+**Very early. Nothing here is production-ready.** This is a solo project in its first weeks. If you need a maintained LLM evaluation and red teaming tool today, use [upstream promptfoo](https://github.com/promptfoo/promptfoo) — it is excellent, actively developed, and not going anywhere.
 
-## Quick Start
+## Why this fork exists
 
-Requires [Node.js](https://nodejs.org/en/download) `>=22.22.0` for npm and npx usage. Node.js 24 LTS
-is recommended; see the [runtime support guide](https://www.promptfoo.dev/docs/installation/#nodejs-runtime-support).
+Three reasons, in order of importance.
 
-```sh
-npm install -g promptfoo
-promptfoo init --example getting-started
-```
+**1. A unified red team harness.** Practitioners currently run promptfoo, [garak](https://github.com/NVIDIA/garak) and [PyRIT](https://github.com/Azure/PyRIT) separately, with three output formats and three configuration models, then collate results by hand. PromptSploit aims to run them as engines behind one harness with one findings schema.
 
-Also available via `brew install promptfoo` and `pip install promptfoo`. You can also use `npx promptfoo@latest` to run any command without installing.
+**2. Grader independence.** promptfoo's default grading path falls through to an OpenAI model. When the system under test is also an OpenAI model, the grader and the subject share a vendor. That is a structural conflict regardless of who owns the project, and it matters for anyone producing red team evidence for an auditor. PromptSploit is working toward explicit grader selection and cross-vendor judge panels.
 
-Most LLM providers require an API key. Set yours as an environment variable:
+**3. Python-native.** The AI security ecosystem — garak, PyRIT, Giskard — is Python. promptfoo is TypeScript. Unification is only practical in one language.
 
-```sh
-export OPENAI_API_KEY=sk-abc123
-```
+OpenAI's acquisition of promptfoo in March 2026 prompted this work but is not the justification for it. OpenAI has publicly committed to maintaining promptfoo as open source, and at the time of writing it is actively maintained.
 
-Once you're in the example directory, run an eval and view results:
+## Roadmap
 
-```sh
-cd getting-started
-promptfoo eval
-promptfoo view
-```
+**Short term** — grader defaults no longer fall through to a single vendor's model; remote generation opt-in rather than opt-out, so no phone-home by default; vendor branding removed.
 
-See [Getting Started](https://www.promptfoo.dev/docs/getting-started/) (evals) or [Red Teaming](https://www.promptfoo.dev/docs/red-team/) (vulnerability scanning) for more.
+**Medium term** — garak and PyRIT integrated as first-class engines; unified SARIF-based findings schema.
 
-## What can you do with Promptfoo?
+**Long term** — progressive port of the evaluation core to Python.
 
-- **Test your prompts and models** with [automated evaluations](https://www.promptfoo.dev/docs/getting-started/)
-- **Secure your LLM apps** with [red teaming](https://www.promptfoo.dev/docs/red-team/) and vulnerability scanning
-- **Compare models** side-by-side (OpenAI, Anthropic, Azure, Bedrock, Ollama, and [more](https://www.promptfoo.dev/docs/providers/))
-- **Automate checks** in [CI/CD](https://www.promptfoo.dev/docs/integrations/ci-cd/)
-- **Review pull requests** for LLM-related security and compliance issues with [code scanning](https://www.promptfoo.dev/docs/code-scanning/)
-- **Share results** with your team
+Divergences from upstream are logged in `NEUTRALITY.md` as they land.
 
-Here's what it looks like in action:
+## Licence and attribution
 
-<img src="site/static/img/claude-vs-gpt-example@2x.png" alt="prompt evaluation matrix - web viewer" width="700">
+PromptSploit is distributed under the MIT Licence, inherited from promptfoo.
 
-It works on the command line too:
+Portions derive from promptfoo, Copyright (c) Promptfoo 2025, MIT licensed. The full upstream commit history — and therefore every contributor's authorship — is preserved in this repository's git log.
 
-<img src="https://www.promptfoo.dev/img/docs/self-grading.gif" alt="promptfoo command line" width="700">
+When garak (Apache 2.0) is integrated, the combined work will move to Apache Licence 2.0, as Apache-2.0 code cannot be relicensed under MIT.
 
-It also can generate [security vulnerability reports](https://www.promptfoo.dev/docs/red-team/):
-
-<img src="https://www.promptfoo.dev/img/redteam-dashboard@2x.jpg" alt="gen ai red team" width="700">
-
-## Why Promptfoo?
-
-- **Developer-first**: Fast, with features like live reload and caching
-- **Private**: LLM evals run 100% locally - your prompts never leave your machine
-- **Flexible**: Works with any LLM API or programming language
-- **Battle-tested**: Powers LLM apps serving 10M+ users in production
-- **Data-driven**: Make decisions based on metrics, not gut feel
-- **Open source**: MIT licensed, with an active community
-
-## Learn More
-
-- [Getting Started](https://www.promptfoo.dev/docs/getting-started/)
-- [Full Documentation](https://www.promptfoo.dev/docs/intro/)
-- [Red Teaming Guide](https://www.promptfoo.dev/docs/red-team/)
-- [CLI Usage](https://www.promptfoo.dev/docs/usage/command-line/)
-- [Node.js Package](https://www.promptfoo.dev/docs/usage/node-package/)
-- [Supported Models](https://www.promptfoo.dev/docs/providers/)
-- [Code Scanning Guide](https://www.promptfoo.dev/docs/code-scanning/)
-
-## Contributing
-
-We welcome contributions! Check out our [contributing guide](https://www.promptfoo.dev/docs/contributing/) to get started.
-
-Join our [Discord community](https://discord.gg/promptfoo) for help and discussion.
-
-<a href="https://github.com/promptfoo/promptfoo/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=promptfoo/promptfoo" />
-</a>
+"promptfoo" is a trademark of Promptfoo Inc. and is used here only to identify the upstream project from which this fork derives.
